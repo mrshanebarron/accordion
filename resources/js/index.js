@@ -5,7 +5,7 @@ export { Accordion, AccordionItem };
 
 export default {
   install(app) {
-    app.component('LdAccordion', Accordion);
-    app.component('LdAccordionItem', AccordionItem);
+    app.component('SbAccordion', Accordion);
+    app.component('SbAccordionItem', AccordionItem);
   }
 };

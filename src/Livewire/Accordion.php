@@ -33,6 +33,6 @@ class Accordion extends Component
 
     public function render()
     {
-        return view('ld-accordion::livewire.accordion');
+        return view('sb-accordion::livewire.accordion');
     }
 }

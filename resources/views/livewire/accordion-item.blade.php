@@ -1,7 +1,7 @@
-<div class="{{ config('ld-accordion.classes.item') }}">
+<div class="{{ config('sb-accordion.classes.item') }}">
     <button
         wire:click="$parent.toggle('{{ $key }}')"
-        class="{{ config('ld-accordion.classes.trigger') }}"
+        class="{{ config('sb-accordion.classes.trigger') }}"
         aria-expanded="{{ $parent->isOpen($key) ? 'true' : 'false' }}"
     >
         <span class="font-medium">{{ $title }}</span>
@@ -16,7 +16,7 @@
     </button>
 
     @if($parent->isOpen($key))
-        <div class="{{ config('ld-accordion.classes.content') }}">
+        <div class="{{ config('sb-accordion.classes.content') }}">
             {{ $slot }}
         </div>
     @endif

@@ -8,7 +8,7 @@
 import { ref, provide, computed } from 'vue';
 
 export default {
-  name: 'LdAccordion',
+  name: 'SbAccordion',
   props: {
     multiple: {
       type: Boolean,

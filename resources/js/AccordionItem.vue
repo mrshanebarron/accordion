@@ -32,7 +32,7 @@
 import { inject, computed } from 'vue';
 
 export default {
-  name: 'LdAccordionItem',
+  name: 'SbAccordionItem',
   props: {
     itemKey: {
       type: String,

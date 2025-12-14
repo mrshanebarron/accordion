@@ -1,3 +1,3 @@
-<div class="{{ config('ld-accordion.classes.container') }}">
+<div class="{{ config('sb-accordion.classes.container') }}">
     {{ $slot }}
 </div>
