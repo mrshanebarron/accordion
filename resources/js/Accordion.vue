@@ -20,7 +20,7 @@ export default {
     },
     containerClass: {
       type: String,
-      default: 'ld-accordion divide-y divide-gray-200 border border-gray-200 rounded-lg overflow-hidden'
+      default: 'sb-accordion divide-y divide-gray-200 border border-gray-200 rounded-lg overflow-hidden'
     }
   },
   setup(props) {

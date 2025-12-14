@@ -1,5 +1,5 @@
 <template>
-  <div class="ld-accordion-item">
+  <div class="sb-accordion-item">
     <button
       @click="toggle"
       :class="triggerClass"
