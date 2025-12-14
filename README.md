@@ -1,6 +1,6 @@
-# Laravel Design Accordion
+# Laravel Accordion Component
 
-Collapsible accordion/disclosure component for Laravel. Supports Livewire, Blade, and Vue 3.
+Collapsible accordion component for Laravel - supports both Livewire and Vue 3.
 
 ## Installation
 
@@ -8,78 +8,57 @@ Collapsible accordion/disclosure component for Laravel. Supports Livewire, Blade
 composer require mrshanebarron/accordion
 ```
 
-For Vue components:
+For Vue support:
 ```bash
-npm install @laraveldesign/accordion
+npm install @mrshanebarron/accordion
 ```
 
 ## Usage
 
-### Livewire Component
+### Livewire
 
 ```blade
-<livewire:ld-accordion>
-    <x-ld-accordion-item title="What is your refund policy?">
-        We offer a 30-day money back guarantee on all purchases.
-    </x-ld-accordion-item>
+<livewire:ld-accordion :multiple="false" default-open="item-1">
+    <livewire:ld-accordion-item key="item-1" title="First Section">
+        Content for the first section goes here.
+    </livewire:ld-accordion-item>
 
-    <x-ld-accordion-item title="How do I contact support?">
-        You can reach us at support@example.com or through our contact form.
-    </x-ld-accordion-item>
-
-    <x-ld-accordion-item title="Where are you located?">
-        Our headquarters is in San Francisco, CA.
-    </x-ld-accordion-item>
-</livewire:ld-accordion>
-
-{{-- Allow multiple items open --}}
-<livewire:ld-accordion :multiple="true" default-open="faq-1">
-    ...
+    <livewire:ld-accordion-item key="item-2" title="Second Section">
+        Content for the second section goes here.
+    </livewire:ld-accordion-item>
 </livewire:ld-accordion>
 ```
 
-### Blade Component
+### Vue 3
 
-```blade
-<x-ld-accordion>
-    <x-ld-accordion-item title="Section 1" :open="true">
-        This section is open by default.
-    </x-ld-accordion-item>
+Register globally in your app:
 
-    <x-ld-accordion-item title="Section 2">
-        Click to expand this section.
-    </x-ld-accordion-item>
+```js
+import { createApp } from 'vue';
+import LdAccordion from '@mrshanebarron/accordion';
 
-    <x-ld-accordion-item title="Section 3" key="custom-key">
-        This item has a custom key.
-    </x-ld-accordion-item>
-</x-ld-accordion>
-
-{{-- Icon on left side --}}
-<x-ld-accordion icon-position="left">
-    ...
-</x-ld-accordion>
+const app = createApp({});
+app.use(LdAccordion);
+app.mount('#app');
 ```
 
-### Vue 3 Component
+Or import components individually:
+
+```js
+import { Accordion, AccordionItem } from '@mrshanebarron/accordion';
+```
+
+Use in templates:
 
 ```vue
-<script setup>
-import { LdAccordion, LdAccordionItem } from '@laraveldesign/accordion'
-</script>
-
 <template>
-  <LdAccordion :multiple="false">
-    <LdAccordionItem title="Getting Started">
-      <p>Welcome to our platform! Here's how to get started...</p>
+  <LdAccordion :multiple="false" default-open="item-1">
+    <LdAccordionItem item-key="item-1" title="First Section">
+      Content for the first section goes here.
     </LdAccordionItem>
 
-    <LdAccordionItem title="Advanced Features">
-      <p>Once you're familiar with the basics...</p>
-    </LdAccordionItem>
-
-    <LdAccordionItem title="API Documentation">
-      <p>Our API allows you to...</p>
+    <LdAccordionItem item-key="item-2" title="Second Section">
+      Content for the second section goes here.
     </LdAccordionItem>
   </LdAccordion>
 </template>
@@ -87,24 +66,21 @@ import { LdAccordion, LdAccordionItem } from '@laraveldesign/accordion'
 
 ## Props
 
-### Accordion Props
+### Accordion
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `multiple` | boolean | `false` | Allow multiple items to be open simultaneously |
-| `defaultOpen` | string | `null` | Key of item to open by default |
-| `animation` | boolean | `true` | Enable expand/collapse animation |
-| `iconPosition` | string | `'right'` | Position of expand icon: `left`, `right` |
+| `multiple` | Boolean | `false` | Allow multiple items open at once |
+| `defaultOpen` | String | `null` | Key of item to open by default |
 
-### AccordionItem Props
+### AccordionItem
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | string | required | Item header title |
-| `key` | string | auto | Unique identifier (auto-generated from title if not provided) |
-| `open` | boolean | `false` | Whether item is initially open |
+| `key` (Livewire) / `itemKey` (Vue) | String | required | Unique identifier for the item |
+| `title` | String | `''` | Title displayed in the trigger button |
 
-## Configuration
+## Customization
 
 Publish the config file:
 
@@ -112,17 +88,11 @@ Publish the config file:
 php artisan vendor:publish --tag=ld-accordion-config
 ```
 
-## Customization
-
-### Publishing Views
+Publish the CSS:
 
 ```bash
-php artisan vendor:publish --tag=ld-accordion-views
+php artisan vendor:publish --tag=ld-accordion-assets
 ```
-
-### Custom Icons
-
-Override the default chevron icon by publishing views and modifying the icon template.
 
 ## License
 

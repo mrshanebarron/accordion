@@ -1,0 +1,22 @@
+{
+    "name": "@mrshanebarron/accordion",
+    "version": "1.0.0",
+    "description": "Collapsible accordion component - Vue 3 version",
+    "main": "resources/js/index.js",
+    "module": "resources/js/index.js",
+    "types": "resources/js/index.d.ts",
+    "files": [
+        "resources/js",
+        "resources/css"
+    ],
+    "keywords": ["vue", "vue3", "accordion", "collapse", "expandable", "laravel"],
+    "author": "Shane Barron <mrshanebarron@gmail.com>",
+    "license": "MIT",
+    "peerDependencies": {
+        "vue": "^3.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mrshanebarron/accordion.git"
+    }
+}

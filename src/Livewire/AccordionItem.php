@@ -2,29 +2,34 @@
 
 namespace MrShaneBarron\Accordion\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class AccordionItem extends Component
 {
-    public string $title;
     public string $key;
-    public bool $open = false;
+    public string $title;
+    public bool $isOpen = false;
 
-    public function mount(string $title, ?string $key = null, bool $open = false): void
+    protected $listeners = ['accordionToggle' => 'handleToggle'];
+
+    public function mount(string $key, string $title): void
     {
+        $this->key = $key;
         $this->title = $title;
-        $this->key = $key ?? \Str::slug($title);
-        $this->open = $open;
+    }
+
+    public function handleToggle(string $activeKey): void
+    {
+        $this->isOpen = ($activeKey === $this->key);
     }
 
     public function toggle(): void
     {
-        $this->open = !$this->open;
+        $this->dispatch('accordionItemClicked', key: $this->key)->to(Accordion::class);
     }
 
-    public function render(): View
+    public function render()
     {
-        return view('ld-accordion::components.accordion-item');
+        return view('ld-accordion::livewire.accordion-item');
     }
 }
