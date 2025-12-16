@@ -17,7 +17,7 @@
 
     @if($parent->isOpen($key))
         <div class="{{ config('sb-accordion.classes.content') }}">
-            {{ $slot }}
+            {{ $slot ?? '' }}
         </div>
     @endif
 </div>
