@@ -1,26 +1,33 @@
-<div class="border border-gray-200 rounded-lg divide-y divide-gray-200">
+<div class="w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
     @foreach($items as $key => $item)
-        <div wire:key="accordion-{{ $key }}">
+        <div
+            wire:key="accordion-{{ $key }}"
+            class="{{ !$loop->last ? 'border-b border-gray-200' : '' }}"
+        >
             <button
+                type="button"
                 wire:click="toggle('{{ $key }}')"
-                class="w-full px-4 py-3 text-left font-medium text-gray-900 hover:bg-gray-50 flex justify-between items-center focus:outline-none"
+                class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                 aria-expanded="{{ $this->isOpen($key) ? 'true' : 'false' }}"
             >
-                {{ $item['title'] ?? $item }}
-                <svg
-                    class="w-5 h-5 transition-transform duration-200 {{ $this->isOpen($key) ? 'rotate-180' : '' }}"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
+                <span class="text-base font-semibold text-gray-900">{{ $item['title'] ?? $item }}</span>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-100 transition-transform duration-300 {{ $this->isOpen($key) ? 'rotate-180 bg-indigo-100' : '' }}">
+                    <svg class="h-4 w-4 text-gray-600 {{ $this->isOpen($key) ? 'text-indigo-600' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </span>
             </button>
-            @if($this->isOpen($key))
-                <div class="px-4 pb-3 text-gray-600">
+            <div
+                x-data="{ open: @js($this->isOpen($key)) }"
+                x-init="$watch('$wire.activeItems', value => open = value.includes('{{ $key }}'))"
+                x-show="open"
+                x-collapse
+                x-cloak
+            >
+                <div class="px-5 pb-5 text-gray-600 leading-relaxed">
                     {{ $item['content'] ?? '' }}
                 </div>
-            @endif
+            </div>
         </div>
     @endforeach
 </div>
