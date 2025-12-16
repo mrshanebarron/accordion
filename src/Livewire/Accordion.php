@@ -6,29 +6,42 @@ use Livewire\Component;
 
 class Accordion extends Component
 {
+    public array $items = [];
     public bool $multiple = false;
     public ?string $defaultOpen = null;
-    public ?string $active = null;
+    public array $activeItems = [];
 
-    public function mount(bool $multiple = false, ?string $defaultOpen = null): void
+    public function mount(array $items = [], bool $multiple = false, ?string $defaultOpen = null): void
     {
+        $this->items = $items;
         $this->multiple = $multiple;
         $this->defaultOpen = $defaultOpen;
-        $this->active = $defaultOpen;
+
+        if ($defaultOpen) {
+            $this->activeItems = [$defaultOpen];
+        }
     }
 
     public function toggle(string $key): void
     {
-        if ($this->active === $key) {
-            $this->active = null;
+        if ($this->multiple) {
+            if (in_array($key, $this->activeItems)) {
+                $this->activeItems = array_values(array_diff($this->activeItems, [$key]));
+            } else {
+                $this->activeItems[] = $key;
+            }
         } else {
-            $this->active = $key;
+            if (in_array($key, $this->activeItems)) {
+                $this->activeItems = [];
+            } else {
+                $this->activeItems = [$key];
+            }
         }
     }
 
     public function isOpen(string $key): bool
     {
-        return $this->active === $key;
+        return in_array($key, $this->activeItems);
     }
 
     public function render()
