@@ -8,7 +8,7 @@ class AccordionServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/accordion.php', 'sb-accordion');
+        $this->mergeConfigFrom(__DIR__ . '/../config/sb-accordion.php', 'sb-accordion');
     }
 
     public function boot(): void
@@ -25,7 +25,7 @@ class AccordionServiceProvider extends ServiceProvider
         // Publishable assets
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/accordion.php' => config_path('sb-accordion.php'),
+                __DIR__ . '/../config/sb-accordion.php' => config_path('sb-accordion.php'),
             ], 'sb-accordion-config');
 
             $this->publishes([
