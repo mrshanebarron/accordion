@@ -7,7 +7,8 @@
             <button
                 type="button"
                 wire:click="toggle('{{ $key }}')"
-                class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                style="padding: 1.25rem 1.5rem;"
+                class="flex w-full items-center justify-between gap-4 text-left transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                 aria-expanded="{{ $this->isOpen($key) ? 'true' : 'false' }}"
             >
                 <span class="text-base font-semibold text-gray-900">{{ $item['title'] ?? $item }}</span>
@@ -18,7 +19,7 @@
                 </span>
             </button>
             @if($this->isOpen($key))
-                <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                <div style="padding: 0.5rem 1.5rem 1.5rem 1.5rem;" class="text-gray-600 leading-relaxed">
                     {{ $item['content'] ?? '' }}
                 </div>
             @endif
