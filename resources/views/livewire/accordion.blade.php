@@ -17,17 +17,11 @@
                     </svg>
                 </span>
             </button>
-            <div
-                x-data="{ open: @js($this->isOpen($key)) }"
-                x-init="$watch('$wire.activeItems', value => open = value.includes('{{ $key }}'))"
-                x-show="open"
-                x-collapse
-                x-cloak
-            >
-                <div class="px-5 pb-5 text-gray-600 leading-relaxed">
+            @if($this->isOpen($key))
+                <div class="px-5 pb-5 pt-2 text-gray-600 leading-relaxed">
                     {{ $item['content'] ?? '' }}
                 </div>
-            </div>
+            @endif
         </div>
     @endforeach
 </div>
