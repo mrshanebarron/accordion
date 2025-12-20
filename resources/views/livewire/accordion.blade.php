@@ -11,24 +11,15 @@
                 aria-expanded="{{ $this->isOpen($key) ? 'true' : 'false' }}"
             >
                 <span class="text-base font-semibold text-gray-900">{{ $item['title'] ?? $item }}</span>
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-100 transition-transform duration-300 {{ $this->isOpen($key) ? 'rotate-180 bg-indigo-100' : '' }}">
-                    <svg class="h-4 w-4 text-gray-600 {{ $this->isOpen($key) ? 'text-indigo-600' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-300 {{ $this->isOpen($key) ? 'rotate-180 bg-indigo-100' : 'bg-gray-100' }}">
+                    <svg class="h-4 w-4 {{ $this->isOpen($key) ? 'text-indigo-600' : 'text-gray-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                 </span>
             </button>
             @if($this->isOpen($key))
-                <div
-                    x-data
-                    x-show="true"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 -translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    class="overflow-hidden"
-                >
-                    <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
-                        {{ $item['content'] ?? '' }}
-                    </div>
+                <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
+                    {{ $item['content'] ?? '' }}
                 </div>
             @endif
         </div>
