@@ -1,4 +1,4 @@
-<div class="w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+<div style="width: 100%;" class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
     @foreach($items as $key => $item)
         <div
             wire:key="accordion-{{ $key }}"
